@@ -158,6 +158,7 @@ describe('LinkedList', () => {
             expect(list.at(2)).to.equal(4);
             expect(list.at(3)).to.equal(3);
             expect(list.at(4)).to.equal(2);
+            
         });
     });
     describe('#indexOf', () => {

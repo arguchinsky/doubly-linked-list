@@ -18,6 +18,7 @@ class LinkedList {
         }
         this._tail = node;
         this.length++;
+        
         return this;
     }
 
@@ -41,15 +42,15 @@ class LinkedList {
                 else current = current.next;
             }
         }
+        return this;
     }
 
     insertAt(index, data) {
         let node = new Node(data);
-        let current = {};
-        Object.assign(current, this._head);
+        let current = Object.assign({}, this._head);
+        
         if (current === null) {
             current = node;
-            return this;
         }
         for (let i = 0; i < this.length; i++){
             if (index === i){
@@ -61,6 +62,7 @@ class LinkedList {
             }
             else current = current.next; 
         }
+        
         return this;
     }
 
@@ -70,13 +72,14 @@ class LinkedList {
 
     clear() {
         this.length = 0;
-        this._tail = new Node;
-        this._head = new Node;
+        this._tail = new Node();
+        this._head = new Node();
+        
+        return this;
     }
 
     deleteAt(index) {
-        let current ={};
-        Object.assign(current, this._head);
+        let current = Object.assign({}, this._head);
         if (current === null) return undefined;
         else {
             for (let i = 0; i < this.length; i++){
@@ -88,21 +91,23 @@ class LinkedList {
             }
         }
         this.length--;
+        
         return this;
     }
 
     reverse() {
-        // let tmpNode = new Node(data);
-        // let current = {};
-        // Object.assign(current, this._head);
-        // while(current !== null){
-        //     tmpNode = current.next;
-        //     current.next = current.prev;
-        //     current.prev = current;
-        //     current = tmpNode;
-        //     current = current.prev;
-        // }
-        // this._head = current.prev;
+        let current = Object.assign({}, this._head) ;
+        let buff = [];
+        while(current !== null){
+            buff.push(current.data);
+            current = current.next;
+        }
+
+        buff.reverse();
+        this.length = 0;
+        this._head = null;
+        this._tail = null;
+        buff.forEach(val => this.append(val));
         return this;
     }
 
